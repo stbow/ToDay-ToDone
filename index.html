@@ -5,12 +5,54 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Learn localStorage by Building a Todo App</title>
-  <link rel="stylesheet" href="todo-app-styles.css" />
+  <title>ToDay ToDone</title>
+  <link rel="icon" href="Assets/list-check-solid.svg" />
+  <script src="https://kit.fontawesome.com/602ebbc371.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="Assets/css/fontawesome.css" />
+  <link rel="stylesheet" href="Assets/css/brands.css" />
+  <link rel="stylesheet" href="Assets/css/solid.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Code+Latin:wght@100..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <main>
+    <!-- need to put in the add task form FIRST?-->
+    <form class="task-form hidden" id="task-form">
+      <div class="task-form-header">
+        <button id="close-task-form-btn" class="fa-solid fa-xmark" type="button" aria-label="close"></button>
+      </div>
+      <div class="task-form-body">
+        <label class="task-form-label" for="title-input">Task</label>
+        <input required type="text" class="form-control" id="title-input" value="" />
+      </div>
+      <div class="task-form-footer">
+        <button id="add-or-update-task-btn" class="btn large-btn" type="submit">
+          &#2b;
+        </button>
+      </div>
+    </form>
+
+    <div id="today">
+      <h1>Today</h1>
+      <button id="open-task-form-btn" class="fa-solid fa-plus"></button>
+      <div class="day-container">
+        <div id="tasks-container"></div>
+      </div>
+    </div>
+    <div id="tomorrow">
+      <h1>Tomorrow</h1>
+      <div class="day-container">
+        <div id="tasks-container"></div>
+      </div>
+    </div>
+    <i id="open-task-form-btn" class="fa-regular fa-square-plus"></i>
+    
+    
+    
     <h1>Todo App</h1>
     <div class="todo-app">
       <button id="open-task-form-btn" class="btn large-btn">
@@ -52,7 +94,24 @@
       <div id="tasks-container"></div>
     </div>
   </main>
-  <script src="todo-app-script.js"></script>
+  <script src="script.js"></script>
 </body>
-
+<i class="fa-solid fa-arrow-right-long"></i>
+<i class="fa-solid fa-arrow-left-long"></i>
+<i class="fa-solid fa-pen-to-square"></i>
+<i class="fa-regular fa-pen-to-square"></i>
+<i class="fa-solid fa-xmark"></i>
+<i class="fa-solid fa-rectangle-xmark"></i>
+<i class="fa-regular fa-rectangle-xmark"></i>
+<i class="fa-solid fa-check"></i>
+<i class="fa-solid fa-square-check"></i>
+<i class="fa-regular fa-square-check"></i>
+<i class="fa-solid fa-angles-right"></i>
+<i class="fa-solid fa-right-to-bracket"></i>
+<i class="fa-solid fa-arrow-right-to-bracket"></i>
+<i class="fa-solid fa-arrows-turn-right"></i>
+<i class="fa-regular fa-hand-point-left"></i>
+<i class="fa-solid fa-check-double"></i>
+<i class="fa-solid fa-plus"></i>
+<i class="fa-regular fa-square-plus"></i>
 </html>

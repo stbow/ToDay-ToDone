@@ -1,9 +1,15 @@
 :root {
-  --white: #fff;
-  --light-grey: #f5f6f7;
-  --dark-grey: #0a0a23;
-  --yellow: #f1be32;
-  --golden-yellow: #feac32;
+  --oxford-blue: #011936ff;
+  --celadon: #a6d3a0ff;
+  --celtic-blue: #226ce0ff;
+  --dark-spring-green: #04724dff;
+  --platinum: #dfe0e2ff;
+
+  --dark: #011936;
+  --light: #dfe0e2;
+  --accent-blue: #226ce0;
+  --accent-green: #04724d;
+  --accent-lt-green: #a6d3a0;
 }
 
 *,
@@ -14,8 +20,27 @@
   box-sizing: border-box;
 }
 
+/* <uniquifier>: Use a unique and descriptive class name
+<weight>: Use a value from 100 to 700 */
+
+.m-plus-code-latin {
+  font-family: "M PLUS Code Latin", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.caveat {
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
-  background-color: var(--dark-grey);
+  background-color: var(--dark);
 }
 
 main {
@@ -26,36 +51,52 @@ main {
 }
 
 h1 {
-  color: var(--light-grey);
+  color: var(--light);
   margin: 20px 0 40px 0;
+  font-family: "Caveat", cursive;
 }
 
-.todo-app {
-  background-color: var(--white);
-  width: 300px;
-  height: 350px;
-  border: 5px solid var(--yellow);
+.day-container {
+  width: 90%;
+  background-color: var(--platinum);
+  border: 5px solid var(--accent-green);
   border-radius: 8px;
   padding: 15px;
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  font-family: "M PLUS Code Latin", monospace;
+}
+
+.todo-app {
+  background-color: var(--platinum);
+  width: 300px;
+  height: 350px;
+  border: 5px solid var(--accent-green);
+  border-radius: 8px;
+  padding: 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: "M PLUS Code Latin", monospace;
 }
 
 .btn {
   cursor: pointer;
   width: 100px;
   margin: 10px;
-  color: var(--dark-grey);
-  background-color: var(--golden-yellow);
-  background-image: linear-gradient(#fecc4c, #ffac33);
-  border-color: var(--golden-yellow);
+  color: var(--dark);
+  font-family: "M PLUS Code Latin", monospace;
+  background-color: var(--accent-lt-green);
+  /*background-image: linear-gradient(#387EEF, #2267D6); */
+  border-color: var(--accent-green);
   border-width: 3px;
 }
 
 .btn:hover {
-  background-image: linear-gradient(#ffcc4c, #f89808);
+  background-color: var(--accent-green);
 }
 
 .large-btn {
@@ -82,7 +123,7 @@ h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--white);
+  background-color: var(--light);
   border-radius: 5px;
   padding: 15px;
   width: 300px;
@@ -182,3 +223,18 @@ h1 {
     margin-bottom: 20px;
   }
 }
+
+/* CSS HEX 
+--oxford-blue: #011936ff;
+--celadon: #a6d3a0ff;
+--celtic-blue: #226ce0ff;
+--dark-spring-green: #04724dff;
+--platinum: #dfe0e2ff;
+
+CSS HSL 
+--oxford-blue: hsla(213, 96%, 11%, 1);
+--celadon: hsla(113, 37%, 73%, 1);
+--celtic-blue: hsla(217, 75%, 51%, 1);
+--dark-spring-green: hsla(160, 93%, 23%, 1);
+--platinum: hsla(220, 5%, 88%, 1);
+*/
