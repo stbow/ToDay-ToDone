@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ToDay ToDone</title>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDay ToDone</title>
   <link rel="icon" href="Assets/list-check-solid.svg" />
   <!-- <script src="https://kit.fontawesome.com/602ebbc371.js" crossorigin="anonymous"></script> -->
   <link rel="stylesheet" href="styles.css" />
@@ -16,58 +15,48 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Code+Latin:wght@100..700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-</head>
-
-<body>
-  <main>
+  </head>
+  <body>
+    <!-- TODAY -->
     <div id="today">
       <h1>Today</h1>
-      <button id="open-task-form-btn" class="btn large-btn">Add</button>
-      <form class="task-form hidden" id="task-form">
-        <div class="task-form-header">
-          <button id="close-task-form-btn" class="close-task-form-btn" type="button" aria-label="close">Close</button>
-        </div>
+      <button id="new-btn" class="btn">New Task</button>
+      <!-- new task form -->
+      <div id="new-task-form" class="task-form hidden">
         <div class="task-form-body">
-          <label class="task-form-label" for="task-input">New task:</label>
+          <label class="task-form-label" for="task-input">New:</label>
           <input required type="text" class="form-control" id="task-input" value="" />
         </div>
         <div class="task-form-footer">
-          <button id="add-or-update-task-btn" class="btn large-btn" type="submit">Add
-          </button>
+          <button id="close-btn" class="btn">Close</button>
+          <button id="add-btn" class="btn">Add</button>
         </div>
-      </form>
-      <div class="day-container">
-        <div id="tasks-container">put<br>some<br>tasks<br>in<br>here</div>
       </div>
+      <!-- edit task form -->
+      <div id="edit-task-form" class="task-form hidden">
+        <div class="task-form-body">
+          <label class="task-form-label" for="task-edit">Edit:</label>
+          <input required type="text" class="form-control" id="task-edit" value="" />
+        </div>
+        <div class="task-form-footer">
+          <button id="close-btn2" class="btn">Close</button>
+          <button id="update-btn" class="btn">Update</button>
+        </div>
+      </div>
+      <!-- TODAY task list -->
+      <div id="today-container" class="day-container">
+      </div>
+      <div><a href="#tomorrow">tomorrow</a></div>
     </div>
+    <!-- TOMORROW -->
     <div id="tomorrow">
       <h1>Tomorrow</h1>
-      <div class="day-container">
-        <div id="tasks-container">put<br>some<br>more<br>tasks<br>in<br>here</div>
+      <button id="refresh-btn" class="btn">Refresh</button>
+      <!-- TOMORROW task list -->
+      <div id="tomorrow-container" class="day-container">
       </div>
+      <div><a href="#today">today</a></div>
     </div>
-    
-  </main>
+  </body>
   <script src="script.js"></script>
-</body>
-<footer>
-  <i class="fa-solid fa-arrow-right-long"></i>
-  <i class="fa-solid fa-arrow-left-long"></i>
-  <i class="fa-solid fa-pen-to-square"></i>
-  <i class="fa-regular fa-pen-to-square"></i>
-  <i class="fa-solid fa-xmark"></i>
-  <i class="fa-solid fa-rectangle-xmark"></i>
-  <i class="fa-regular fa-rectangle-xmark"></i>
-  <i class="fa-solid fa-check"></i>
-  <i class="fa-solid fa-square-check"></i>
-  <i class="fa-regular fa-square-check"></i>
-  <i class="fa-solid fa-angles-right"></i>
-  <i class="fa-solid fa-right-to-bracket"></i>
-  <i class="fa-solid fa-arrow-right-to-bracket"></i>
-  <i class="fa-solid fa-arrows-turn-right"></i>
-  <i class="fa-regular fa-hand-point-left"></i>
-  <i class="fa-solid fa-check-double"></i>
-  <i class="fa-solid fa-plus"></i>
-  <i class="fa-regular fa-square-plus"></i>
-</footer>
 </html>

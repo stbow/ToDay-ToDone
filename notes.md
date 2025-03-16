@@ -12,7 +12,18 @@
 * use sticky for headers so they stay at the top of their divs but don't stay at the top of the page
 
 ## changes
+
 * edit and delete buttons move to the right
 * remove delete button?
 * complete button - toggles .done, edits the font to strikethrough
 * two data sets - today vs tomorrow
+
+## arrays
+
+- push - adds at the end
+- pop - removes last element
+- shift - removes first, shifts all others down
+- unshift - adds to first slot, shifts all others up
+- splice:
+    - .splice(index to add, how many to remove, item to add, ...)
+    - returns an array with the deleted items
