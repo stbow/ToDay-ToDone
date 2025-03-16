@@ -1,120 +1,170 @@
-const taskForm = document.getElementById("task-form");
-const confirmCloseDialog = document.getElementById("confirm-close-dialog");
-const openTaskFormBtn = document.getElementById("open-task-form-btn");
-const closeTaskFormBtn = document.getElementById("close-task-form-btn");
-const addOrUpdateTaskBtn = document.getElementById("add-or-update-task-btn");
-const cancelBtn = document.getElementById("cancel-btn");
-const discardBtn = document.getElementById("discard-btn");
-const tasksContainer = document.getElementById("tasks-container");
-const titleInput = document.getElementById("title-input");
-const dateInput = document.getElementById("date-input");
-const descriptionInput = document.getElementById("description-input");
+const newTaskBtn = document.getElementById("new-btn");
+const newTaskForm = document.getElementById("new-task-form");
+const editTaskForm = document.getElementById("edit-task-form");
+const closeBtn = document.getElementById("close-btn");
+const taskInput = document.getElementById("task-input");
+const addBtn = document.getElementById("add-btn");
+const taskEdit = document.getElementById("task-edit");
+const closeBtn2 = document.getElementById("close-btn2");
+const updateBtn = document.getElementById("update-btn");
+const todayContainer = document.getElementById("today-container");
+const refreshBtn = document.getElementById("refresh-btn");
+const tomorrowContainer = document.getElementById("tomorrow-container");
 
-const taskData = JSON.parse(localStorage.getItem("data")) || []; //get task list if there is one, set up empty array if not
-let currentTask = {}; //used for adding or updating tasks
+newTaskBtn.onclick = newTask;
+closeBtn.onclick = closeForm;
+addBtn.onclick = addTask;
+closeBtn2.onclick = closeForm2;
+updateBtn.onclick = updateTask;
+refreshBtn.onclick = refreshTasks;
 
-const addOrUpdateTask = () => {
-  const dataArrIndex = taskData.findIndex((item) => item.id === currentTask.id);
-  const taskObj = {
-    id: `${titleInput.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
-    title: titleInput.value,
-    date: dateInput.value,
-    description: descriptionInput.value,
-  };
+var todayTasks = JSON.parse(localStorage.getItem("saveToday")) || [];
+var tomorrowTasks = JSON.parse(localStorage.getItem("saveTomorrow")) || [];
+var currentTask = {};
+var taskIndex;
+var day;
 
-  if (dataArrIndex === -1) {
-    taskData.unshift(taskObj);
-  } else {
-    taskData[dataArrIndex] = taskObj;
+displayList();
+
+function newTask() {
+  newTaskForm.classList.remove("hidden");
+  taskInput.focus();
+}
+
+function closeForm() {
+  taskInput.value = "";
+  newTaskForm.classList.add("hidden");
+}
+
+function addTask() {
+  let newTask = {
+    id: `${todayTasks.length}`,
+    title: taskInput.value,
+    status: ""
   }
+  todayTasks.push(newTask);
+  displayList();
+  save();
+  closeForm();
+}
 
-  localStorage.setItem("data", JSON.stringify(taskData));
-  updateTaskContainer()
-  reset()
-};
+function displayList() {
+  todayContainer.innerHTML = "";
+  for (let i=0; i < todayTasks.length; i++) {
+    todayContainer.innerHTML += `
+    <div class="task${todayTasks[i].status}" id="${i}">
+      <span class="task-text">${todayTasks[i].title}</span>
+      <span class="controls">
+      <button onclick="editTask(this)" class="edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
+      <button onclick="markDone(this)" class="done-btn"><i class="fa-solid fa-check"></i></button>
+      <button onclick="moveToTomorrow(this)" class="tom-btn"><i class="fa-solid fa-arrow-right-long"></i></button>
+      </span>
+    </div>`
+  }
+  tomorrowContainer.innerHTML = "";
+  for (let i=0; i < tomorrowTasks.length; i++) {
+    tomorrowContainer.innerHTML += `
+    <div class="task${tomorrowTasks[i].status}" id="${i}">
+      <span class="task-text">${tomorrowTasks[i].title}</span>
+      <span class="controls">
+      <button onclick="editTask(this)" class="edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
+      <button onclick="markDone(this)" class="done-btn"><i class="fa-solid fa-check"></i></button>
+      <button onclick="moveToToday(this)" class="tod-btn"><i class="fa-solid fa-arrow-left-long"></i></button>
+      </span>
+    </div>`
+  }
+}
 
-const updateTaskContainer = () => {
-  tasksContainer.innerHTML = "";
+function editTask(buttonEl) {
+  taskIndex = buttonEl.parentElement.parentElement.id;
+  day = buttonEl.parentElement.parentElement.parentElement.id === "today-container" ? todayTasks : tomorrowTasks;
+  var tempTask = day[taskIndex];
+  taskEdit.value = tempTask.title;
+  editTaskForm.classList.remove("hidden");
+  taskEdit.focus();
+  taskEdit.setSelectionRange(taskEdit.value.length, taskEdit.value.length);
+}
 
-  taskData.forEach(
-    ({ id, title, date, description }) => {
-        tasksContainer.innerHTML += `
-        <div class="task" id="${id}">
-          <p><strong>Title:</strong> ${title}</p>
-          <p><strong>Date:</strong> ${date}</p>
-          <p><strong>Description:</strong> ${description}</p>
-          <button onclick="editTask(this)" type="button" class="btn">Edit</button>
-          <button onclick="deleteTask(this)" type="button" class="btn">Delete</button> 
-        </div>
-      `
+function closeForm2() {
+  taskEdit.value = "";
+  editTaskForm.classList.add("hidden");
+}
+
+function updateTask() {
+  let updatedTask = taskEdit.value;
+  day[taskIndex].title = updatedTask;
+  displayList();
+  save();
+  closeForm2();
+}
+
+function markDone(buttonEl) {
+  taskIndex = buttonEl.parentElement.parentElement.id;
+  day = buttonEl.parentElement.parentElement.parentElement.id === "today-container" ? todayTasks : tomorrowTasks;
+  var tempTask = day[taskIndex];
+  tempTask.status = tempTask.status == " done" ? "" : " done";
+  day[taskIndex] = tempTask;
+  displayList();
+  save();
+}
+
+function moveToTomorrow(buttonEl) {
+  taskIndex = buttonEl.parentElement.parentElement.id;
+  let removedTask = todayTasks.splice(taskIndex, 1);
+  let tempTomorrow = tomorrowTasks.concat(removedTask);
+  tomorrowTasks = tempTomorrow;
+  displayList();
+  save();
+}
+
+function moveToToday(buttonEl) {
+  taskIndex = buttonEl.parentElement.parentElement.id;
+  let removedTask = tomorrowTasks.splice(taskIndex, 1);
+  let tempToday = todayTasks.concat(removedTask);
+  todayTasks = tempToday;
+  displayList();
+  save();
+}
+
+function refreshTasks() {
+  // remove everything with .done
+  for (let i=todayTasks.length-1; i >=0; i--) {
+    if (todayTasks[i].status === " done") {
+      todayTasks.splice(i, 1);
     }
-  );
-};
-
-
-const deleteTask = (buttonEl) => {
-  const dataArrIndex = taskData.findIndex(
-    (item) => item.id === buttonEl.parentElement.id
-  );
-
-  buttonEl.parentElement.remove();
-  taskData.splice(dataArrIndex, 1);
-  localStorage.setItem("data", JSON.stringify(taskData));
+  }
+  for (let i=0; i < todayTasks.length; i++) {
+    todayTasks[i].id = i;
+  }
+  // move tomorrow to today
+  for (let i=0; i < tomorrowTasks.length; i++) {
+    if (tomorrowTasks[i].status === "") {
+      tomorrowTasks[i].id = todayTasks.length;
+      todayTasks.push(tomorrowTasks[i]);
+    }
+  }
+  tomorrowTasks = [];
+  displayList();
+  save();
 }
 
-const editTask = (buttonEl) => {
-    const dataArrIndex = taskData.findIndex(
-    (item) => item.id === buttonEl.parentElement.id
-  );
-
-  currentTask = taskData[dataArrIndex];
-
-  titleInput.value = currentTask.title;
-  dateInput.value = currentTask.date;
-  descriptionInput.value = currentTask.description;
-
-  addOrUpdateTaskBtn.innerText = "Update Task";
-
-  taskForm.classList.toggle("hidden");  
-}
-
-const reset = () => {
-  addOrUpdateTaskBtn.innerText = "Add Task";
-  titleInput.value = "";
-  dateInput.value = "";
-  descriptionInput.value = "";
-  taskForm.classList.toggle("hidden");
-  currentTask = {};
-}
-
-if (taskData.length) {
-  updateTaskContainer();
-}
-
-openTaskFormBtn.addEventListener("click", () =>
-  taskForm.classList.toggle("hidden")
-);
-
-closeTaskFormBtn.addEventListener("click", () => {
-  const formInputsContainValues = titleInput.value || dateInput.value || descriptionInput.value;
-  const formInputValuesUpdated = titleInput.value !== currentTask.title || dateInput.value !== currentTask.date || descriptionInput.value !== currentTask.description;
-
-  if (formInputsContainValues && formInputValuesUpdated) {
-    confirmCloseDialog.showModal();
-  } else {
-    reset();
+taskInput.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addBtn.click();
   }
 });
 
-cancelBtn.addEventListener("click", () => confirmCloseDialog.close());
+taskEdit.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    updateBtn.click();
+  }
+})
 
-discardBtn.addEventListener("click", () => {
-  confirmCloseDialog.close();
-  reset()
-});
+// SAVE
 
-taskForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  addOrUpdateTask();
-});
+function save() {
+  localStorage.setItem("saveToday", JSON.stringify(todayTasks));
+  localStorage.setItem("saveTomorrow", JSON.stringify(tomorrowTasks));
+}
