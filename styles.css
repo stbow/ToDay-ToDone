@@ -1,9 +1,9 @@
 :root {
-  --oxford-blue: #011936ff;
+  /* --oxford-blue: #011936ff;
   --celadon: #a6d3a0ff;
   --celtic-blue: #226ce0ff;
   --dark-spring-green: #04724dff;
-  --platinum: #dfe0e2ff;
+  --platinum: #dfe0e2ff; */
 
   --dark: #011936;
   --light: #dfe0e2;
@@ -51,6 +51,10 @@ h1 {
 #today, #tomorrow {
   width: 100vw;
   height: 100vh;
+}
+
+button {
+  color: black;
 }
 
 #new-btn, #refresh-btn {
@@ -166,42 +170,3 @@ a {
 footer {
   background-color: var(--platinum);
 }
-
-/* @media (min-width: 576px) {
-  .todo-app,
-  .task-form {
-    width: 400px;
-    height: 450px;
-  }
-
-  .task-form-label {
-    font-size: 1.5rem;
-  }
-
-  #title-input,
-  #date-input {
-    height: 2rem;
-  }
-
-  #title-input,
-  #date-input,
-  #description-input {
-    padding: 5px;
-    margin-bottom: 20px;
-  }
-} */
-
-/* CSS HEX 
---oxford-blue: #011936ff;
---celadon: #a6d3a0ff;
---celtic-blue: #226ce0ff;
---dark-spring-green: #04724dff;
---platinum: #dfe0e2ff;
-
-CSS HSL 
---oxford-blue: hsla(213, 96%, 11%, 1);
---celadon: hsla(113, 37%, 73%, 1);
---celtic-blue: hsla(217, 75%, 51%, 1);
---dark-spring-green: hsla(160, 93%, 23%, 1);
---platinum: hsla(220, 5%, 88%, 1);
-*/
