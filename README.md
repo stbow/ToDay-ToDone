@@ -61,6 +61,7 @@ Just visit [stbow's website](https://stbow.github.io/ToDay-ToDone/)
 
 ```
 /ToDay-ToDone
+├── /Assets
 ├── index.html
 ├── styles.css
 ├── script.js
