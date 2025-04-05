@@ -55,11 +55,11 @@ function displayList() {
     <div class="task${todayTasks[i].status}" id="${i}">
       <span class="task-text">${todayTasks[i].title}</span>
       <span class="controls">
-      <button onclick="editTask(this)" class="edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
-      <button onclick="markDone(this)" class="done-btn"><i class="fa-solid fa-check"></i></button>
-      <button onclick="moveToTomorrow(this)" class="tom-btn"><i class="fa-solid fa-arrow-right-long"></i></button>
+      <button onclick="editTask(this)" class="edit-btn"><i class="fa-regular fa-pen-to-square fa-lg"></i></button>
+      <button onclick="markDone(this)" class="done-btn"><i class="fa-solid fa-check fa-lg"></i></button>
+      <button onclick="moveToTomorrow(this)" class="tom-btn"><i class="fa-solid fa-arrow-right-long fa-lg"></i></button>
       </span>
-    </div>`
+    </div><hr></hr>`
   }
   tomorrowContainer.innerHTML = "";
   for (let i=0; i < tomorrowTasks.length; i++) {
@@ -67,11 +67,11 @@ function displayList() {
     <div class="task${tomorrowTasks[i].status}" id="${i}">
       <span class="task-text">${tomorrowTasks[i].title}</span>
       <span class="controls">
-      <button onclick="editTask(this)" class="edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
-      <button onclick="markDone(this)" class="done-btn"><i class="fa-solid fa-check"></i></button>
-      <button onclick="moveToToday(this)" class="tod-btn"><i class="fa-solid fa-arrow-left-long"></i></button>
+      <button onclick="editTask(this)" class="edit-btn"><i class="fa-regular fa-pen-to-square fa-lg"></i></button>
+      <button onclick="markDone(this)" class="done-btn"><i class="fa-solid fa-check fa-lg"></i></button>
+      <button onclick="moveToToday(this)" class="tod-btn"><i class="fa-solid fa-arrow-left-long fa-lg"></i></button>
       </span>
-    </div>`
+    </div><hr></hr>`
   }
 }
 

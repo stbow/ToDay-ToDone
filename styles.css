@@ -60,6 +60,7 @@ button {
 #new-btn, #refresh-btn {
   float: right;
   margin-right: 5%;
+  min-width: 72px;
 }
 
 .day-container {
@@ -75,6 +76,7 @@ button {
 
 #today-container, #tomorrow-container {
   height: calc(100% - 140px);
+  height: -webkit-fill-available;
 }
 
 .btn {
@@ -128,10 +130,10 @@ button {
 }
 
 .task {
-  margin: 5px 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: baseline;
 }
 
 .controls {
@@ -141,18 +143,26 @@ button {
 .edit-btn, .done-btn, .tom-btn, .tod-btn {
   border: none;
   background-color: transparent;
-  margin-left: 4px;
+  height: 24px;
+  width: 24px;
 }
-
-/* .todo {
-  text-decoration: none;
-} */
 
 .done {
   .task-text {
     text-decoration: line-through;
     opacity: 60%;
   }
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+hr {
+  margin-bottom: 1em;
+  width: 100%;
+  border: 1px solid hsl(217, 75%, 76%);
 }
 
 .hidden {
