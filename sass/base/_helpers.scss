@@ -1,0 +1,32 @@
+@use '../utilities/index' as *;
+
+.day-container {
+  width: 90%;
+  height: calc(100% - 184px);
+  background-color: $light;
+  border: 5px solid $accent-green;
+  border-radius: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.task {
+  @include flex(row, space-between, baseline);
+}
+
+.controls {
+  display: inline;
+}
+
+.done {
+  .task-text {
+    text-decoration: line-through;
+    opacity: 60%;
+  }
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,29 @@
+@use '../utilities/index' as *;
+
+.task-form {
+  @include flex(column, space-between);
+  position: fixed;
+  top: 112px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: $dark;
+  color: $light;
+  border: 2px solid $accent-lt-green;
+  border-radius: 4px;
+  padding: 4px;
+  width: 70%;
+  overflow: auto;
+  &-body {
+    @include flex(row, space-around, baseline);
+    padding-top: 4px;
+  }
+  &-footer {
+    @include flex(row, flex-end);
+  }
+}
+
+#task-input, #task-edit {
+  width: 80%;
+  margin-bottom: 10px;
+  padding: 2px;
+}

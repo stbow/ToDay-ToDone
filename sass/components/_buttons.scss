@@ -1,0 +1,31 @@
+@use '../utilities/index' as *;
+
+button {
+  color: black;
+}
+
+#new-btn, #refresh-btn {
+  float: right;
+  margin-right: 5%;
+  min-width: 72px;
+}
+
+.btn {
+  padding: 4px;
+  background-color: $light;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+#add-btn, #close-btn, #close-btn2, #update-btn {
+  width: 60px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.edit-btn, .done-btn, .tom-btn, .tod-btn {
+  border: none;
+  background-color: transparent;
+  height: 24px;
+  width: 24px;
+}
