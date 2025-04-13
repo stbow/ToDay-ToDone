@@ -45,7 +45,7 @@ select {
 
 .day-container {
   width: 90%;
-  height: calc(100% - 184px);
+  height: calc(100% - 190px);
   background-color: hsl(220, 5%, 88%);
   border: 5px solid hsl(160, 93%, 23%);
   border-radius: 8px;
